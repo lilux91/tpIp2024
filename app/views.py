@@ -28,10 +28,7 @@ def search(request):
         # Si no hay término de búsqueda, mostramos todas las imágenes
         images = getAllImages()
 
-    # Además, obtener la lista de favoritos del usuario si está autenticado
-    favourite_list = getAllFavourites(request)
-
-    return render(request, 'home.html', {'images': images, 'favourite_list': favourite_list})
+    return render(request, 'home.html', {'images': images})
 
 
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
