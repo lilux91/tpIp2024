@@ -5,6 +5,7 @@ from .layers.services import services
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .layers.services.services import getAllImages
+from .layers.services.services import getAllFavourites
 
 def index_page(request):
     return render(request, 'index.html')
@@ -18,14 +19,19 @@ def home(request):
     return render(request, 'home.html', { 'images': images, 'favourite_list': favourite_list })
 
 def search(request):
-    search_msg = request.POST.get('query', '')
+    search_msg = request.POST.get('query', '').strip()
 
-    # si el texto ingresado no es vacío, trae las imágenes y favoritos desde services.py,
-    # y luego renderiza el template (similar a home).
-    if (search_msg != ''):
-        pass
+    if search_msg:
+        # Llamamos al servicio para obtener todas las imágenes que coincidan con el nombre
+        images = getAllImages(input=search_msg)  # Pasamos el término de búsqueda al servicio
     else:
-        return redirect('home')
+        # Si no hay término de búsqueda, mostramos todas las imágenes
+        images = getAllImages()
+
+    # Además, obtener la lista de favoritos del usuario si está autenticado
+    favourite_list = getAllFavourites(request)
+
+    return render(request, 'home.html', {'images': images, 'favourite_list': favourite_list})
 
 
 # Estas funciones se usan cuando el usuario está logueado en la aplicación.
