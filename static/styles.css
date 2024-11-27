@@ -248,20 +248,3 @@ p {
   margin-inline-end: 0px;
   unicode-bidi: isolate;
 }
-
-
-.header {
-  display: flex; /* Activa Flexbox */
-  justify-content: center; /* Centra horizontalmente */
-  align-items: center; /* Centra verticalmente */
-  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
-  padding: 0; /* Elimina padding si no lo necesitas */
-  margin: 0; /* Asegura que no haya márgenes no deseados */
-  position: relative; /* Necesario para usar transform */
-}
-
-img {
-  transform: translateY(-230px); /* Sube la imagen 20px */
-  max-width: 100%; /* Ajusta el tamaño de la imagen al contenedor si es necesario */
-  height: auto; /* Mantén las proporciones de la imagen */
-}
